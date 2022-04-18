@@ -1,7 +1,18 @@
+'For shape
 Private Sub Worksheet_SelectionChange(ByVal Target As Range)
 On Error GoTo 0
 With ActiveSheet.Shapes("Rectangle 1")
 .Top = Target.Offset(0).Top
 .Left = Target.Offset(, -3).Left
+End With
+End Sub
+
+'for command button
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+On Error GoTo 0
+With Cells(Windows(1).ScrollRow, Windows(1).ScrollColumn)
+CommandButton1.Top = Target.Offset(0).Top
+CommandButton1.Left = Target.Offset(, -5).Left
+
 End With
 End Sub

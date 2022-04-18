@@ -1,0 +1,7 @@
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+On Error GoTo 0
+With ActiveSheet.Shapes("Rectangle 1")
+.Top = Target.Offset(0).Top
+.Left = Target.Offset(, -3).Left
+End With
+End Sub

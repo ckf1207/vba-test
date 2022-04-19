@@ -19,3 +19,28 @@ CommandButton1.Left = Target.Offset(, -5).Left
 
 End With
 End Sub
+
+'with certain range of cell
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+On Error Resume Next
+Dim rownumber As Integer
+Dim columnnumber As Integer
+CommandButton1.Visible = True
+ListBox1.Visible = True
+rownumber = ActiveCell.Row
+columnnumber = ActiveCell.Column
+If rownumber < 100 And columnnumber < 15 Then
+CommandButton1.Visible = True
+ListBox1.Visible = True
+With Cells(Windows(1).ScrollRow, Windows(1).ScrollColumn)
+CommandButton1.Top = Target.Offset(0).Top
+CommandButton1.Left = Target.Offset(, -3).Left
+ListBox1.Top = Target.Offset(0).Top
+ListBox1.Left = Target.Offset(, -5).Left
+End With
+Else
+CommandButton1.Visible = False
+ListBox1.Visible = False
+End If
+
+End Sub

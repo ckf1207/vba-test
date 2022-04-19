@@ -44,3 +44,52 @@ ListBox1.Visible = False
 End If
 
 End Sub
+
+'add value in list box with function>> database prepare
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+On Error Resume Next
+Dim rownumber As Integer
+Dim columnnumber As Integer
+CommandButton1.Visible = True
+ListBox1.Visible = True
+Label1.Visible = True
+rownumber = ActiveCell.Row
+columnnumber = ActiveCell.Column
+If rownumber < 100 And columnnumber < 20 And columnnumber > 4 Then
+CommandButton1.Visible = True
+ListBox1.Visible = True
+Label1.Visible = True
+With Cells(Windows(1).ScrollRow, Windows(1).ScrollColumn)
+CommandButton1.Top = Target.Offset(0).Top
+CommandButton1.Left = Target.Offset(, -2).Left
+ListBox1.Top = Target.Offset(0).Top
+ListBox1.Left = Target.Offset(, -4).Left
+ListBox1.Clear
+Dim iCount As Integer
+ListBox1.ColumnCount = 3
+ListBox1.ColumnWidths = "40,40,40"
+For iCount = 1 To 5
+   ListBox1.AddItem
+   ListBox1.List(iCount - 1, 0) = testtt(iCount)
+   'ListBox1.List(iCount - 1, 1) = "Item " & iCount
+   'ListBox1.List(iCount - 1, 2) = "Item " & iCount
+Next iCount
+
+Label1.Top = Target.Offset(0).Top
+Label1.Left = Target.Offset(, -5).Left
+End With
+Else
+CommandButton1.Visible = False
+ListBox1.Visible = False
+Label1.Visible = False
+End If
+Call test
+'MsgBox "done"
+End Sub
+Sub test()
+'MsgBox "process"
+End Sub
+Function testtt(counting As Integer)
+testtt = counting
+End Function
+

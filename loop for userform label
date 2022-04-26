@@ -1,0 +1,4 @@
+For A = 23 To 28
+Me.Controls("label" & Format(A, "00")).Visible = False
+Me.Controls("label32").Visible = False
+Next A

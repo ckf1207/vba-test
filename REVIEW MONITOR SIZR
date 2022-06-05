@@ -1,0 +1,29 @@
+Option Explicit
+
+Sub Test()
+
+    Dim WMIObject As Object
+    Dim WMIResult As Object
+    Dim WMIItem As Object
+
+    Set WMIObject = GetObject("winmgmts:\\.\root\WMI")
+    Set WMIResult = WMIObject.ExecQuery("Select * From WmiMonitorBasicDisplayParams")
+
+    Dim Diagonal As Double
+    Dim Width As Double
+    Dim Height As Double
+    Dim Counter As Integer
+    Counter = 1
+
+    For Each WMIItem In WMIResult
+
+        Width = WMIItem.MaxHorizontalImageSize / 2.54
+        Height = WMIItem.MaxVerticalImageSize / 2.54
+        Diagonal = Sqr((Height ^ 2) + (Width ^ 2))
+
+        MsgBox "Your monitor # " & Counter & " is approximiately " & Round(Diagonal, 2) & " inches diagonal"
+        Counter = Counter + 1
+
+    Next
+
+End Sub
